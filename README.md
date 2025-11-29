@@ -53,3 +53,16 @@ To deploy on Render:
 3. Push to main. The GitHub Actions workflow `deploy-backend-render.yml` will run and attempt to trigger a deploy.
 
 Note: If you prefer Azure App Service, Heroku or another cloud provider instead of Render, I can change the workflow to target that provider.
+
+Environment variables (example):
+
+- `DJANGO_SECRET_KEY` — a secure random secret
+- `DJANGO_DEBUG` = `False` (set to False in production)
+- `DJANGO_ALLOWED_HOSTS` = `your-app.onrender.com` (comma separated for multiple hosts)
+- `DATABASE_URL` = `postgres://user:pass@host:port/dbname` (if using PostgreSQL)
+
+Static files / Frontend configuration:
+
+- The frontend is served by GitHub Pages and by staging the `frontend/` files into the Pages artifact.
+- If the backend is deployed elsewhere, update the frontend code (e.g., `frontend/index.html`) to point to the new backend API base URL for saving/analyzing tasks (ex: `https://your-api.onrender.com/api/tasks/analyze/`).
+
