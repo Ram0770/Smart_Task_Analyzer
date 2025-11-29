@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Smart Task Analyzer</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="app">
+    <header>
+      <h1>Smart Task Analyzer</h1>
+      <p>Paste JSON tasks on the left and click Analyze — results appear on the right.</p>
+    </header>
+
+    <main class="main-grid">
+      <section class="left-panel">
+        <h2>Input (JSON)</h2>
+        <textarea id="task-input" placeholder='[
+  {
+    "title": "Fix bug #231",
+    "due_date": "2025-12-01",
+    "importance": 8,
+    "estimated_hours": 2,
+    "dependencies": ["Write tests"],
+    "done": false
+  }
+]'></textarea>
+
+        <div class="controls">
+          <button id="analyze-btn">Analyze</button>
+          <button id="suggest-btn">Suggest Top 3</button>
+          <label class="small">
+            <input type="checkbox" id="save-checkbox" /> Save tasks to server
+          </label>
+        </div>
+
+        <div class="help">
+          <strong>Example:</strong> provide a JSON array of task objects. Required fields handled gracefully.
+        </div>
+      </section>
+
+      <section class="right-panel">
+        <h2>Results</h2>
+        <div id="results" class="results"></div>
+      </section>
+    </main>
+
+    <footer>
+      <small>Backend API: <code>http://127.0.0.1:8000/api/tasks/analyze/</code></small>
+    </footer>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
