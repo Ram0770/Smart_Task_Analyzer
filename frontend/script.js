@@ -4,8 +4,9 @@ const inputEl = document.getElementById('task-input');
 const resultsEl = document.getElementById('results');
 const saveCheckbox = document.getElementById('save-checkbox');
 
-const ANALYZE_URL = 'http://127.0.0.1:8000/api/tasks/analyze/';
-const SUGGEST_URL = 'http://127.0.0.1:8000/api/tasks/suggest/';
+const BACKEND_BASE_URL = window.BACKEND_BASE_URL || '';
+const ANALYZE_URL = `${BACKEND_BASE_URL}/api/tasks/analyze/`;
+const SUGGEST_URL = `${BACKEND_BASE_URL}/api/tasks/suggest/`;
 
 function showError(message) {
   resultsEl.innerHTML = `<div class="card low"><div class="title">Error</div><div class="meta">${escapeHtml(message)}</div></div>`;
@@ -65,7 +66,7 @@ async function postAnalyze(tasks) {
       return;
     }
     renderTasks(data.tasks);
-  } catch (err) {
+    } catch (err) {
     showError('Network error: ' + err.message + '. Make sure the Django server is running at http://127.0.0.1:8000');
   }
 }

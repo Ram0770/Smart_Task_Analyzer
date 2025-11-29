@@ -47,10 +47,12 @@
     </main>
 
     <footer>
-      <small>Backend API: <code>http://127.0.0.1:8000/api/tasks/analyze/</code></small>
+      <small>Backend API: <code id="backend-api">http://127.0.0.1:8000/api/tasks/analyze/</code></small>
     </footer>
   </div>
 
+  <!-- Update the value below to point to your deployed backend, e.g. https://myapi.onrender.com -->
+  <script>window.BACKEND_BASE_URL = 'http://127.0.0.1:8000';</script>
   <script src="script.js"></script>
 </body>
 </html>
