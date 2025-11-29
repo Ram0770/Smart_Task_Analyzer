@@ -35,3 +35,21 @@ Open http://127.0.0.1:8080/index.html
 - GitHub Pages can only serve static files — this means the Django backend is NOT hosted on Pages. If you want to host the backend, consider a service such as Render, Heroku, Azure App Service, or DigitalOcean App Platform.
 
 - To update the Pages deployment automatically, push changes to `main`. The repository contains a GitHub Actions workflow that copies the `frontend/` folder and publishes it to Pages on every push to `main`.
+
+## Deploying the backend (Django)
+
+This project includes a template GitHub Actions workflow for deploying the Django backend to Render.com. The workflow will:
+
+- Install dependencies
+- Run collectstatic
+- Trigger a Render deploy using the Render API (this requires `RENDER_API_KEY` and `RENDER_SERVICE_ID` to be set as repository secrets)
+
+To deploy on Render:
+
+1. Create a Web Service on Render with the GitHub repository connected (or create the service manually and note the `SERVICE ID`)
+2. Add repo secrets in GitHub -> Settings -> Secrets & Variables:
+   - `RENDER_API_KEY` — an API key from Render (read/write) that can trigger deploys
+   - `RENDER_SERVICE_ID` — the ID of your Render service for the backend
+3. Push to main. The GitHub Actions workflow `deploy-backend-render.yml` will run and attempt to trigger a deploy.
+
+Note: If you prefer Azure App Service, Heroku or another cloud provider instead of Render, I can change the workflow to target that provider.
